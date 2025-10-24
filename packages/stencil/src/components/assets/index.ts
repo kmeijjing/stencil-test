@@ -5,6 +5,8 @@ import * as ArrowLeft from './arrowLeft/index';
 import * as ArrowLeftEnd from './arrowLeftEnd/index';
 import * as ArrowRightEnd from './arrowRightEnd/index';
 import * as ArrowUp from './arrowUp/index';
+import * as Close from './close/index';
+import * as Search from './search/index';
 
 export const Icons = {
  ...ArrowDown,
@@ -14,4 +16,6 @@ export const Icons = {
  ...ArrowRightEnd,
  ...ArrowUp,
  ...Check,
+ ...Close,
+ ...Search,
 };
