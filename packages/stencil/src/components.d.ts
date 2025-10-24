@@ -5,6 +5,12 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { ButtonSize, ButtonVariant } from "./components/sd-button/sd-button";
+import { Event } from "@stencil/core";
+import { TagColor, TagSize } from "./components/sd-tag/sd-tag";
+export { ButtonSize, ButtonVariant } from "./components/sd-button/sd-button";
+export { Event } from "@stencil/core";
+export { TagColor, TagSize } from "./components/sd-tag/sd-tag";
 export namespace Components {
     interface MyComponent {
         /**
@@ -23,6 +29,151 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface SdButton {
+        /**
+          * @default '#025497'
+         */
+        "color"?: string;
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * @default ''
+         */
+        "label"?: string;
+        /**
+          * @default 'sm'
+         */
+        "size"?: ButtonSize;
+        /**
+          * @default 'button'
+         */
+        "type"?: 'button' | 'submit' | 'reset';
+        /**
+          * @default 'primary'
+         */
+        "variant"?: ButtonVariant;
+    }
+    interface SdCheckbox {
+        /**
+          * 현재 선택 상태 또는 배열 형태의 값
+          * @default false
+         */
+        "checked": any[] | any;
+        /**
+          * 비활성화 여부
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * 표시할 라벨 텍스트
+          * @default ''
+         */
+        "label": string;
+        /**
+          * 배열 모드에서의 개별 값
+         */
+        "val"?: any;
+    }
+    interface SdIcon {
+        /**
+          * 아이콘 색상
+         */
+        "color"?: string;
+        /**
+          * 접근성을 위한 라벨
+         */
+        "label"?: string;
+        /**
+          * 아이콘명
+         */
+        "name": IconName;
+        /**
+          * 회전 각도 (0, 90, 180, 270)
+         */
+        "rotate"?: 0 | 90 | 180 | 270;
+        /**
+          * 아이콘 크기
+          * @default 12
+         */
+        "size": number | string;
+    }
+    interface SdInput {
+        /**
+          * @default false
+         */
+        "barcode"?: boolean;
+        /**
+          * @default false
+         */
+        "clearable": boolean;
+        /**
+          * @default false
+         */
+        "disabled": boolean;
+        "label"?: string;
+        /**
+          * @default '입력해 주세요.'
+         */
+        "placeholder": string;
+        "rules"?: Array<(value: string | number | null) => boolean | string>;
+        /**
+          * @default null
+         */
+        "value"?: string | number | null;
+        "width"?: number;
+    }
+    interface SdPagination {
+        /**
+          * @default 1
+         */
+        "currentPage": number;
+        /**
+          * @default 1
+         */
+        "lastPage": number;
+        /**
+          * @default false
+         */
+        "simple": boolean;
+    }
+    interface SdTag {
+        "bgColor"?: string;
+        /**
+          * @default 'grey'
+         */
+        "color": TagColor;
+        /**
+          * @default ''
+         */
+        "label": string;
+        /**
+          * @default false
+         */
+        "rounded": boolean;
+        /**
+          * @default 'md'
+         */
+        "size": TagSize;
+        "textColor"?: string;
+    }
+}
+export interface SdButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLSdButtonElement;
+}
+export interface SdCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLSdCheckboxElement;
+}
+export interface SdInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLSdInputElement;
+}
+export interface SdPaginationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLSdPaginationElement;
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -31,8 +182,98 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLSdButtonElementEventMap {
+        "sdClick": MouseEvent;
+    }
+    interface HTMLSdButtonElement extends Components.SdButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLSdButtonElementEventMap>(type: K, listener: (this: HTMLSdButtonElement, ev: SdButtonCustomEvent<HTMLSdButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLSdButtonElementEventMap>(type: K, listener: (this: HTMLSdButtonElement, ev: SdButtonCustomEvent<HTMLSdButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLSdButtonElement: {
+        prototype: HTMLSdButtonElement;
+        new (): HTMLSdButtonElement;
+    };
+    interface HTMLSdCheckboxElementEventMap {
+        "sdChange": any | any[];
+    }
+    interface HTMLSdCheckboxElement extends Components.SdCheckbox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLSdCheckboxElementEventMap>(type: K, listener: (this: HTMLSdCheckboxElement, ev: SdCheckboxCustomEvent<HTMLSdCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLSdCheckboxElementEventMap>(type: K, listener: (this: HTMLSdCheckboxElement, ev: SdCheckboxCustomEvent<HTMLSdCheckboxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLSdCheckboxElement: {
+        prototype: HTMLSdCheckboxElement;
+        new (): HTMLSdCheckboxElement;
+    };
+    interface HTMLSdIconElement extends Components.SdIcon, HTMLStencilElement {
+    }
+    var HTMLSdIconElement: {
+        prototype: HTMLSdIconElement;
+        new (): HTMLSdIconElement;
+    };
+    interface HTMLSdInputElementEventMap {
+        "$click": string | number | null;
+        "$input": string | number | null;
+        "$change": string | number | null;
+        "$focus": Event;
+        "$blur": Event;
+    }
+    interface HTMLSdInputElement extends Components.SdInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLSdInputElementEventMap>(type: K, listener: (this: HTMLSdInputElement, ev: SdInputCustomEvent<HTMLSdInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLSdInputElementEventMap>(type: K, listener: (this: HTMLSdInputElement, ev: SdInputCustomEvent<HTMLSdInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLSdInputElement: {
+        prototype: HTMLSdInputElement;
+        new (): HTMLSdInputElement;
+    };
+    interface HTMLSdPaginationElementEventMap {
+        "pageChange": number;
+    }
+    interface HTMLSdPaginationElement extends Components.SdPagination, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLSdPaginationElementEventMap>(type: K, listener: (this: HTMLSdPaginationElement, ev: SdPaginationCustomEvent<HTMLSdPaginationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLSdPaginationElementEventMap>(type: K, listener: (this: HTMLSdPaginationElement, ev: SdPaginationCustomEvent<HTMLSdPaginationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLSdPaginationElement: {
+        prototype: HTMLSdPaginationElement;
+        new (): HTMLSdPaginationElement;
+    };
+    interface HTMLSdTagElement extends Components.SdTag, HTMLStencilElement {
+    }
+    var HTMLSdTagElement: {
+        prototype: HTMLSdTagElement;
+        new (): HTMLSdTagElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "sd-button": HTMLSdButtonElement;
+        "sd-checkbox": HTMLSdCheckboxElement;
+        "sd-icon": HTMLSdIconElement;
+        "sd-input": HTMLSdInputElement;
+        "sd-pagination": HTMLSdPaginationElement;
+        "sd-tag": HTMLSdTagElement;
     }
 }
 declare namespace LocalJSX {
@@ -53,8 +294,154 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface SdButton {
+        /**
+          * @default '#025497'
+         */
+        "color"?: string;
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * @default ''
+         */
+        "label"?: string;
+        "onSdClick"?: (event: SdButtonCustomEvent<MouseEvent>) => void;
+        /**
+          * @default 'sm'
+         */
+        "size"?: ButtonSize;
+        /**
+          * @default 'button'
+         */
+        "type"?: 'button' | 'submit' | 'reset';
+        /**
+          * @default 'primary'
+         */
+        "variant"?: ButtonVariant;
+    }
+    interface SdCheckbox {
+        /**
+          * 현재 선택 상태 또는 배열 형태의 값
+          * @default false
+         */
+        "checked"?: any[] | any;
+        /**
+          * 비활성화 여부
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * 표시할 라벨 텍스트
+          * @default ''
+         */
+        "label"?: string;
+        /**
+          * 값 변경 이벤트
+         */
+        "onSdChange"?: (event: SdCheckboxCustomEvent<any | any[]>) => void;
+        /**
+          * 배열 모드에서의 개별 값
+         */
+        "val"?: any;
+    }
+    interface SdIcon {
+        /**
+          * 아이콘 색상
+         */
+        "color"?: string;
+        /**
+          * 접근성을 위한 라벨
+         */
+        "label"?: string;
+        /**
+          * 아이콘명
+         */
+        "name": IconName;
+        /**
+          * 회전 각도 (0, 90, 180, 270)
+         */
+        "rotate"?: 0 | 90 | 180 | 270;
+        /**
+          * 아이콘 크기
+          * @default 12
+         */
+        "size"?: number | string;
+    }
+    interface SdInput {
+        /**
+          * @default false
+         */
+        "barcode"?: boolean;
+        /**
+          * @default false
+         */
+        "clearable"?: boolean;
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        "label"?: string;
+        "on$blur"?: (event: SdInputCustomEvent<Event>) => void;
+        "on$change"?: (event: SdInputCustomEvent<string | number | null>) => void;
+        "on$click"?: (event: SdInputCustomEvent<string | number | null>) => void;
+        "on$focus"?: (event: SdInputCustomEvent<Event>) => void;
+        "on$input"?: (event: SdInputCustomEvent<string | number | null>) => void;
+        /**
+          * @default '입력해 주세요.'
+         */
+        "placeholder"?: string;
+        "rules"?: Array<(value: string | number | null) => boolean | string>;
+        /**
+          * @default null
+         */
+        "value"?: string | number | null;
+        "width"?: number;
+    }
+    interface SdPagination {
+        /**
+          * @default 1
+         */
+        "currentPage"?: number;
+        /**
+          * @default 1
+         */
+        "lastPage"?: number;
+        "onPageChange"?: (event: SdPaginationCustomEvent<number>) => void;
+        /**
+          * @default false
+         */
+        "simple"?: boolean;
+    }
+    interface SdTag {
+        "bgColor"?: string;
+        /**
+          * @default 'grey'
+         */
+        "color"?: TagColor;
+        /**
+          * @default ''
+         */
+        "label"?: string;
+        /**
+          * @default false
+         */
+        "rounded"?: boolean;
+        /**
+          * @default 'md'
+         */
+        "size"?: TagSize;
+        "textColor"?: string;
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "sd-button": SdButton;
+        "sd-checkbox": SdCheckbox;
+        "sd-icon": SdIcon;
+        "sd-input": SdInput;
+        "sd-pagination": SdPagination;
+        "sd-tag": SdTag;
     }
 }
 export { LocalJSX as JSX };
@@ -62,6 +449,12 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "sd-button": LocalJSX.SdButton & JSXBase.HTMLAttributes<HTMLSdButtonElement>;
+            "sd-checkbox": LocalJSX.SdCheckbox & JSXBase.HTMLAttributes<HTMLSdCheckboxElement>;
+            "sd-icon": LocalJSX.SdIcon & JSXBase.HTMLAttributes<HTMLSdIconElement>;
+            "sd-input": LocalJSX.SdInput & JSXBase.HTMLAttributes<HTMLSdInputElement>;
+            "sd-pagination": LocalJSX.SdPagination & JSXBase.HTMLAttributes<HTMLSdPaginationElement>;
+            "sd-tag": LocalJSX.SdTag & JSXBase.HTMLAttributes<HTMLSdTagElement>;
         }
     }
 }

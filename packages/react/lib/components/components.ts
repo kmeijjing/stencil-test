@@ -7,8 +7,15 @@
 
 /* eslint-disable */
 
+import { type Event, type SdButtonCustomEvent, type SdInputCustomEvent } from "@stencil-test/stencil";
 import { MyComponent as MyComponentElement, defineCustomElement as defineMyComponent } from "@stencil-test/stencil/dist/components/my-component.js";
-import type { StencilReactComponent } from '@stencil/react-output-target/runtime';
+import { SdButton as SdButtonElement, defineCustomElement as defineSdButton } from "@stencil-test/stencil/dist/components/sd-button.js";
+import { SdCheckbox as SdCheckboxElement, defineCustomElement as defineSdCheckbox } from "@stencil-test/stencil/dist/components/sd-checkbox.js";
+import { SdIcon as SdIconElement, defineCustomElement as defineSdIcon } from "@stencil-test/stencil/dist/components/sd-icon.js";
+import { SdInput as SdInputElement, defineCustomElement as defineSdInput } from "@stencil-test/stencil/dist/components/sd-input.js";
+import { SdPagination as SdPaginationElement, defineCustomElement as defineSdPagination } from "@stencil-test/stencil/dist/components/sd-pagination.js";
+import { SdTag as SdTagElement, defineCustomElement as defineSdTag } from "@stencil-test/stencil/dist/components/sd-tag.js";
+import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
@@ -21,4 +28,78 @@ export const MyComponent: StencilReactComponent<MyComponentElement, MyComponentE
     react: React,
     events: {} as MyComponentEvents,
     defineCustomElement: defineMyComponent
+});
+
+export type SdButtonEvents = { onSdClick: EventName<SdButtonCustomEvent<MouseEvent>> };
+
+export const SdButton: StencilReactComponent<SdButtonElement, SdButtonEvents> = /*@__PURE__*/ createComponent<SdButtonElement, SdButtonEvents>({
+    tagName: 'sd-button',
+    elementClass: SdButtonElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: { onSdClick: 'sdClick' } as SdButtonEvents,
+    defineCustomElement: defineSdButton
+});
+
+export type SdCheckboxEvents = { onSdChange: EventName<CustomEvent<any | any[]>> };
+
+export const SdCheckbox: StencilReactComponent<SdCheckboxElement, SdCheckboxEvents> = /*@__PURE__*/ createComponent<SdCheckboxElement, SdCheckboxEvents>({
+    tagName: 'sd-checkbox',
+    elementClass: SdCheckboxElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: { onSdChange: 'sdChange' } as SdCheckboxEvents,
+    defineCustomElement: defineSdCheckbox
+});
+
+export type SdIconEvents = NonNullable<unknown>;
+
+export const SdIcon: StencilReactComponent<SdIconElement, SdIconEvents> = /*@__PURE__*/ createComponent<SdIconElement, SdIconEvents>({
+    tagName: 'sd-icon',
+    elementClass: SdIconElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as SdIconEvents,
+    defineCustomElement: defineSdIcon
+});
+
+export type SdInputEvents = { on - $click: EventName<CustomEvent<string | number | null>>,
+    on - $input: EventName<CustomEvent<string | number | null>>,
+        on - $change: EventName<CustomEvent<string | number | null>>,
+            on - $focus: EventName<SdInputCustomEvent<Event>>,
+                on - $blur: EventName<SdInputCustomEvent<Event>> };
+
+export const SdInput: StencilReactComponent<SdInputElement, SdInputEvents> = /*@__PURE__*/ createComponent<SdInputElement, SdInputEvents>({
+    tagName: 'sd-input',
+    elementClass: SdInputElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: { on- $click: '$click',
+    on- $input: '$input',
+    on - $change: '$change',
+    on - $focus: '$focus',
+    on - $blur: '$blur'} as SdInputEvents,
+        defineCustomElement: defineSdInput
+      });
+
+export type SdPaginationEvents = { onPageChange: EventName<CustomEvent<number>> };
+
+export const SdPagination: StencilReactComponent<SdPaginationElement, SdPaginationEvents> = /*@__PURE__*/ createComponent<SdPaginationElement, SdPaginationEvents>({
+    tagName: 'sd-pagination',
+    elementClass: SdPaginationElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: { onPageChange: 'pageChange' } as SdPaginationEvents,
+    defineCustomElement: defineSdPagination
+});
+
+export type SdTagEvents = NonNullable<unknown>;
+
+export const SdTag: StencilReactComponent<SdTagElement, SdTagEvents> = /*@__PURE__*/ createComponent<SdTagElement, SdTagEvents>({
+    tagName: 'sd-tag',
+    elementClass: SdTagElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as SdTagEvents,
+    defineCustomElement: defineSdTag
 });

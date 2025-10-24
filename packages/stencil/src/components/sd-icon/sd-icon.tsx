@@ -1,8 +1,6 @@
 import { Component, Prop, h } from '@stencil/core';
 import { Icons } from '../assets/index';
 
-type IconName = keyof typeof Icons;
-
 @Component({
  tag: 'sd-icon',
  styleUrl: 'sd-icon.scss',
