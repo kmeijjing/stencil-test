@@ -1,10 +1,10 @@
 import type { Preview } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import '../src/styles/global.scss';
-import { defineCustomElements } from '../dist/esm/loader';
+// import { defineCustomElements } from '../dist/esm/loader';
 
-// Stencil 컴포넌트를 웹 컴포넌트로 등록
-defineCustomElements();
+// // Stencil 컴포넌트를 웹 컴포넌트로 등록
+// defineCustomElements();
 
 const preview: Preview = {
  parameters: {

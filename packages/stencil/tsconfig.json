@@ -14,7 +14,8 @@
     "jsxFactory": "h",
     "jsxFragmentFactory": "h.Fragment",
     "forceConsistentCasingInFileNames": true,
-    "strict": true
+    "strict": true,
+    "skipLibCheck": true
   },
   "include": ["src", "src/types/global.d.ts"],
   "exclude": ["node_modules", "src/**/*.stories.ts"]

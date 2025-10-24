@@ -17,9 +17,9 @@
 
 ## Events
 
-| Event    | Description | Type               |
-| -------- | ----------- | ------------------ |
-| `change` | 값 변경 이벤트    | `CustomEvent<any>` |
+| Event      | Description | Type               |
+| ---------- | ----------- | ------------------ |
+| `sdChange` | 값 변경 이벤트    | `CustomEvent<any>` |
 
 
 ## Dependencies
