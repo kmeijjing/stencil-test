@@ -1,0 +1,57 @@
+@import 'global.scss';
+
+:host {
+ display: block;
+}
+
+.sd-input {
+ display: flex;
+ width: var(--input-width, 100%);
+ align-items: center;
+ height: 28px;
+ padding: 4px 12px;
+ border: 1px solid $grey_55;
+ border-radius: 4px;
+ color: $grey_90;
+ font-size: 12px;
+ line-height: 20px;
+ &:hover,
+ &--focused {
+  border-color: $brilliantblue_75;
+  box-shadow: 0 0 4px 0 #0071ff66;
+ }
+
+ &.sd-input--error:not(:hover):not(.sd-input--focused) {
+  border-color: $red_70;
+ }
+
+ &.sd-input--barcode:not(.sd-input--disabled) {
+  background-color: $olive_15;
+ }
+
+ &.sd-input--disabled {
+  background-color: $grey_20 !important;
+  border-color: $grey_45 !important;
+  color: $grey_65 !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+ }
+
+ .sd-input__native_element {
+  display: block;
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: inherit;
+
+  &::placeholder {
+   font-size: 12px;
+   height: 20px;
+   line-height: 20px;
+   color: $grey_55;
+  }
+ }
+}
