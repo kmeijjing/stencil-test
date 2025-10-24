@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
-
-// 빌드된 컴포넌트를 로드
-// import '../../../dist/design-system/design-system.esm.js';
+import { html } from 'lit';
 
 const meta: Meta = {
  title: 'Components/Button',
@@ -32,6 +30,17 @@ const meta: Meta = {
   },
   sdClick: { action: 'clicked', table: { disable: true } },
  },
+ render: args => html`
+  <sd-button
+   variant="${args.variant || 'primary'}"
+   size="${args.size || 'md'}"
+   color="${args.color || '#025497'}"
+   ?disabled="${args.disabled}"
+   @sdClick="${args.sdClick}"
+  >
+   ${args.label || ''}
+  </sd-button>
+ `,
 } satisfies Meta;
 
 export default meta;
