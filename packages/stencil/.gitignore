@@ -25,5 +25,8 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 .env
 
+*storybook.log
+storybook-static
+
 # auto generated files
 src/components.d.ts

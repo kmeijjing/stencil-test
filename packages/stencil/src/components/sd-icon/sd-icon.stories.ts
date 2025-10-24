@@ -40,7 +40,7 @@ export const CheckIcon: Story = {
   color: '#032d40',
   label: 'checkIcon',
  },
- render: (args) => html`
+ render: args => html`
   <sd-icon
    name="${args.name}"
    size="${args.size}"
@@ -58,7 +58,7 @@ export const ArrowLeftIcon: Story = {
   color: '#aaaaaa',
   label: 'arrowLeftIcon',
  },
- render: (args) => html`
+ render: args => html`
   <sd-icon
    name="${args.name}"
    size="${args.size}"
