@@ -4,7 +4,7 @@
  * Changes to this file may cause incorrect behavior and will be lost if the code is regenerated.
  */
 /* eslint-disable */
-import { MyComponent as MyComponentElement, defineCustomElement as defineMyComponent } from "@stencil-test/stencil/my-component";
+import { MyComponent as MyComponentElement, defineCustomElement as defineMyComponent } from "@stencil-test/stencil/dist/components/my-component.js";
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 export const MyComponent = /*@__PURE__*/ createComponent({

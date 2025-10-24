@@ -2,13 +2,6 @@
  "extends": "../../tsconfig.json",
  "compilerOptions": {
   "outDir": "./dist",
-  "lib": ["dom", "es2017"],
-  "module": "esnext",
-  "moduleResolution": "node",
-  "target": "es2017",
-  "skipLibCheck": true,
-  "jsx": "react",
-  "allowSyntheticDefaultImports": true,
   "declarationDir": "./dist/types"
  },
  "include": ["lib"],

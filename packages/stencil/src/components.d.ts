@@ -9,14 +9,17 @@ export namespace Components {
     interface MyComponent {
         /**
           * The first name
+          * @default ''
          */
         "first": string;
         /**
           * The last name
+          * @default ''
          */
         "last": string;
         /**
           * The middle name
+          * @default ''
          */
         "middle": string;
     }
@@ -36,14 +39,17 @@ declare namespace LocalJSX {
     interface MyComponent {
         /**
           * The first name
+          * @default ''
          */
         "first"?: string;
         /**
           * The last name
+          * @default ''
          */
         "last"?: string;
         /**
           * The middle name
+          * @default ''
          */
         "middle"?: string;
     }

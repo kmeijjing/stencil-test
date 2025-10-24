@@ -22,18 +22,15 @@ export const config: Config = {
     },
     reactOutputTarget({
       stencilPackageName: '@stencil-test/stencil',
-      outDir: '../../packages/react/lib/components/stencil-generated/index/ts',
+      // outDir: '../../packages/react/lib/components/stencil-generated/index/ts',
+      outDir: '../../packages/react/lib/components',
+      // customElementsDir: 'dist/components',
     }),
     vueOutputTarget({
       componentCorePackage: '@stencil-test/stencil',
       proxiesFile: '../../packages/vue/lib/components.ts',
-      // componentModels: [
-      //   {
-      //     elements: ['my-component'],
-      //     event: 'custom-event',
-      //     targetAttr: 'value',
-      //   },
-      // ],
+      includeDefineCustomElements: true,
+      customElementsDir: 'dist/components',
     }),
   ],
   testing: {
