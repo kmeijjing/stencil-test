@@ -13,13 +13,22 @@
   "test": "__tests__"
  },
  "files": [
-  "dist"
+  "dist",
+  "lib"
  ],
  "scripts": {
   "test": "node ./__tests__/react.test.js",
   "build": "node fix-components.js && npm run tsc",
   "watch": "tsc -p . -w",
   "tsc": "tsc -p ."
+ },
+ "dependencies": {
+  "@stencil-test/stencil": "^0.0.1",
+  "@stencil/react-output-target": "^1.2.0"
+ },
+ "peerDependencies": {
+  "react": ">=16.8.0",
+  "react-dom": ">=16.8.0"
  },
  "devDependencies": {
   "@types/react": "^19.2.2",

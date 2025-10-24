@@ -1,15 +1,20 @@
 const fs = require('fs');
 const path = require('path');
 
-const filePath = path.join(__dirname, 'lib/components/stencil-generated/index/ts/components.ts');
+const filePath = path.join(__dirname, 'lib/components/components.ts');
 
 try {
+  if (!fs.existsSync(filePath)) {
+    console.log('⚠️ React components.ts not found, skipping fix');
+    return;
+  }
+  
   let content = fs.readFileSync(filePath, 'utf8');
   
   // Replace the problematic import path with the correct one
   content = content.replace(
     /@stencil-test\/stencil\/dist\/components\/my-component\.js/g,
-    "@stencil-test/stencil/my-component"
+    "@stencil-test/stencil/dist/components/my-component.js"
   );
   
   fs.writeFileSync(filePath, content, 'utf8');

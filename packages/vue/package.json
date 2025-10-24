@@ -12,7 +12,8 @@
   "test": "__tests__"
  },
  "files": [
-  "lib"
+  "lib",
+  "dist"
  ],
  "scripts": {
   "test": "node ./__tests__/vue.test.js",
@@ -26,6 +27,10 @@
   "vue": "^3.4.38"
  },
  "dependencies": {
+  "@stencil-test/stencil": "^0.0.1",
   "@stencil/vue-output-target": "^0.11.8"
+ },
+ "peerDependencies": {
+  "vue": ">=3.0.0"
  }
 }

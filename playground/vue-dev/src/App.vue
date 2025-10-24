@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
+import { MyComponent } from "@stencil-test/vue";
 </script>
 
 <template>
- <div></div>
- <HelloWorld msg="Vite + Vue" />
+ <div>
+  <MyComponent first="Hello" middle="from" last="Vue!" />
+ </div>
 </template>
 
 <style scoped>

@@ -22,9 +22,7 @@ export const config: Config = {
     },
     reactOutputTarget({
       stencilPackageName: '@stencil-test/stencil',
-      // outDir: '../../packages/react/lib/components/stencil-generated/index/ts',
       outDir: '../../packages/react/lib/components',
-      // customElementsDir: 'dist/components',
     }),
     vueOutputTarget({
       componentCorePackage: '@stencil-test/stencil',
