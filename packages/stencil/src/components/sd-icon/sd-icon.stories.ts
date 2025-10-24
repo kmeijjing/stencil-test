@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+
+import '../../../dist/stencil-test/stencil-test.esm.js';
 
 const meta: Meta = {
  title: 'Components/Icon',
@@ -40,15 +41,6 @@ export const CheckIcon: Story = {
   color: '#032d40',
   label: 'checkIcon',
  },
- render: args => html`
-  <sd-icon
-   name="${args.name}"
-   size="${args.size}"
-   color="${args.color}"
-   rotate="${args.rotate}"
-   label="${args.label}"
-  ></sd-icon>
- `,
 };
 
 export const ArrowLeftIcon: Story = {
@@ -58,13 +50,4 @@ export const ArrowLeftIcon: Story = {
   color: '#aaaaaa',
   label: 'arrowLeftIcon',
  },
- render: args => html`
-  <sd-icon
-   name="${args.name}"
-   size="${args.size}"
-   color="${args.color}"
-   rotate="${args.rotate}"
-   label="${args.label}"
-  ></sd-icon>
- `,
 };

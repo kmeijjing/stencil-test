@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+
+import '../../../dist/stencil-test/stencil-test.esm.js';
 
 const meta: Meta = {
  title: 'Components/Button',
@@ -30,17 +31,6 @@ const meta: Meta = {
   },
   sdClick: { action: 'clicked', table: { disable: true } },
  },
- render: args => html`
-  <sd-button
-   variant="${args.variant || 'primary'}"
-   size="${args.size || 'md'}"
-   color="${args.color || '#025497'}"
-   ?disabled="${args.disabled}"
-   @sdClick="${args.sdClick}"
-  >
-   ${args.label || ''}
-  </sd-button>
- `,
 } satisfies Meta;
 
 export default meta;
