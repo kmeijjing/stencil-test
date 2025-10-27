@@ -13,10 +13,7 @@
    "import": "./dist/stencil-test/stencil-test.esm.js",
    "require": "./dist/stencil-test/stencil-test.cjs.js"
   },
-  "./dist/components/my-component.js": {
-   "import": "./dist/components/my-component.js",
-   "types": "./dist/components/my-component.d.ts"
-  },
+  "./dist/components/*": "./dist/components/*",
   "./loader": {
    "import": "./loader/index.js",
    "require": "./loader/index.cjs",

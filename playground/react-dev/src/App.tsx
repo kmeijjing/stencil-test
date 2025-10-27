@@ -1,13 +1,23 @@
 import "./App.css";
-import { MyComponent, SdButton } from "@stencil-test/react";
+import { SdButton, SdInput, SdCheckbox } from "@stencil-test/react";
 
 function App() {
  return (
   <>
    <div>
-    <MyComponent first="Hello" middle="the121212re" last="World" />
+    <h1>Stencil React Components</h1>
+    
+    <div style={{ margin: '20px 0' }}>
+      <SdButton label="Click Me" />
+    </div>
 
-    <SdButton label="Click Me" />
+    <div style={{ margin: '20px 0' }}>
+      <SdInput placeholder="Enter text..." />
+    </div>
+
+    <div style={{ margin: '20px 0' }}>
+      <SdCheckbox label="Check me" />
+    </div>
    </div>
   </>
  );
