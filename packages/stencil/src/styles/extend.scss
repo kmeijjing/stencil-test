@@ -8,8 +8,13 @@
 
  &::-webkit-scrollbar {
   opacity: 0;
-  width: 8px;
   background: $grey_25;
+  &:horizontal {
+   height: 8px;
+  }
+  &:vertical {
+   width: 8px;
+  }
  }
 
  &::-webkit-scrollbar-thumb {

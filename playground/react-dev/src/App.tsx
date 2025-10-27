@@ -51,7 +51,21 @@ function App() {
      <SdCheckbox label="Check me" />
     </div> */}
    <div className="table">
-    <SdTable columns={TABLE_COLUMNS} rows={TABLE_ROWS} />
+    <SdTable
+     columns={TABLE_COLUMNS}
+     rows={TABLE_ROWS}
+     bodyCellRenderer={(column, row) => {
+      if (column.name === 'name') {
+       return `<b>${row.name}</b>`;
+      }
+     }}
+     resizable
+     pagination={{
+      page: 2,
+      rowsPerPage: 50,
+      lastPage: 10,
+     }}
+    ></SdTable>
    </div>
   </>
  );

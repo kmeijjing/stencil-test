@@ -83,9 +83,6 @@
         align-items: center;
         gap: 4px;
 
-        button {
-         padding: 0;
-        }
 
         &--left {
          justify-content: flex-start;
@@ -96,6 +93,19 @@
         &--right {
          justify-content: flex-end;
         }
+       }
+
+       .sd-th__resizer {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 16px;
+        cursor: col-resize;
+        z-index: 3;
+        border-left: 1px solid $grey_45;
+        border-right: 1px solid $grey_45;
        }
       }
      }
@@ -114,6 +124,7 @@
       padding: 0 16px;
       border-bottom: 1px solid $grey_30;
       background: white;
+      vertical-align: middle;
 
       &.sd-td {
        &--left {
@@ -135,12 +146,16 @@
  .sd-table__bottom {
   background: white;
   text-align: center;
-
-  &--no-data {
-   color: $grey_65;
-   height: 240px;
-   vertical-align: middle;
-   padding-top: 80px;
-  }
  }
+}
+
+.sd-table__pagination {
+ background: $grey_05;
+ height: 48px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ border: 1px solid $grey_30;
+ border-top: none;
+ border-radius: 8px;
 }

@@ -7,17 +7,34 @@
 
 ## Properties
 
-| Property       | Attribute       | Description    | Type                                                                                  | Default        |
-| -------------- | --------------- | -------------- | ------------------------------------------------------------------------------------- | -------------- |
-| `class`        | `class`         |                | `string`                                                                              | `''`           |
-| `columns`      | --              | column 정의      | `SdTableColumn[]`                                                                     | `[]`           |
-| `noDataLabel`  | `no-data-label` | 빈 상태 메시지       | `string`                                                                              | `'데이터가 없습니다.'` |
-| `pagination`   | --              |                | `undefined \| { page: number; rowsPerPage: number; lastPage?: number \| undefined; }` | `undefined`    |
-| `rowKey`       | `row-key`       | 행의 고유 식별자 프로퍼티 | `string`                                                                              | `'id'`         |
-| `rows`         | --              | row 데이터        | `{ [key: string]: any; }[]`                                                           | `[]`           |
-| `selectable`   | `selectable`    | 다중 선택 허용       | `boolean`                                                                             | `true`         |
-| `selected`     | --              | 선택된 row 목록     | `Set<{ [key: string]: any; }>`                                                        | `new Set()`    |
-| `stickyHeader` | `sticky-header` | 헤더 고정          | `boolean`                                                                             | `false`        |
+| Property           | Attribute       | Description | Type                                                                                             | Default        |
+| ------------------ | --------------- | ----------- | ------------------------------------------------------------------------------------------------ | -------------- |
+| `bodyCellRenderer` | --              |             | `((column: SdTableColumn, row: Row) => string \| HTMLElement \| null \| undefined) \| undefined` | `undefined`    |
+| `className`        | `class-name`    |             | `string`                                                                                         | `''`           |
+| `columns`          | --              |             | `SdTableColumn[]`                                                                                | `[]`           |
+| `noDataLabel`      | `no-data-label` |             | `string`                                                                                         | `'데이터가 없습니다.'` |
+| `pagination`       | --              |             | `undefined \| { page: number; rowsPerPage: number; lastPage?: number \| undefined; }`            | `undefined`    |
+| `resizable`        | `resizable`     |             | `boolean`                                                                                        | `false`        |
+| `rowKey`           | `row-key`       |             | `string`                                                                                         | `'id'`         |
+| `rows`             | --              |             | `Row[]`                                                                                          | `[]`           |
+| `selectable`       | `selectable`    |             | `boolean`                                                                                        | `false`        |
+| `selected`         | --              |             | `Set<Row>`                                                                                       | `new Set()`    |
+| `stickyHeader`     | `sticky-header` |             | `boolean`                                                                                        | `false`        |
+
+
+## Events
+
+| Event            | Description | Type                 |
+| ---------------- | ----------- | -------------------- |
+| `sdSelectChange` |             | `CustomEvent<Row[]>` |
+
+
+## Shadow Parts
+
+| Part            | Description |
+| --------------- | ----------- |
+| `"table"`       |             |
+| `"tbody-empty"` |             |
 
 
 ## Dependencies
@@ -25,12 +42,15 @@
 ### Depends on
 
 - [sd-checkbox](../sd-checkbox)
+- [sd-pagination](../sd-pagination)
 
 ### Graph
 ```mermaid
 graph TD;
   sd-table --> sd-checkbox
+  sd-table --> sd-pagination
   sd-checkbox --> sd-icon
+  sd-pagination --> sd-icon
   style sd-table fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

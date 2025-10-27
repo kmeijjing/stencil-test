@@ -23,6 +23,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [sd-table](../sd-table)
+
 ### Depends on
 
 - [sd-icon](../sd-icon)
@@ -31,6 +35,7 @@
 ```mermaid
 graph TD;
   sd-pagination --> sd-icon
+  sd-table --> sd-pagination
   style sd-pagination fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
