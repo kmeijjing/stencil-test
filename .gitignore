@@ -10,7 +10,7 @@ packages/stencil/www/
 packages/stencil/loader/
 
 # React auto-generated files  
-packages/react/lib/components/stencil-generated/
+packages/react/lib/components/components.ts
 packages/react/dist/
 
 # Vue auto-generated files

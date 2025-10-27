@@ -7,9 +7,11 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonSize, ButtonVariant } from "./components/sd-button/sd-button";
 import { Event } from "@stencil/core";
+import { SdTableColumn } from "./components/sd-table/sd-table";
 import { TagColor, TagSize } from "./components/sd-tag/sd-tag";
 export { ButtonSize, ButtonVariant } from "./components/sd-button/sd-button";
 export { Event } from "@stencil/core";
+export { SdTableColumn } from "./components/sd-table/sd-table";
 export { TagColor, TagSize } from "./components/sd-tag/sd-tag";
 export namespace Components {
     interface MyComponent {
@@ -138,6 +140,52 @@ export namespace Components {
          */
         "simple": boolean;
     }
+    interface SdTable {
+        /**
+          * @default ''
+         */
+        "class": string;
+        /**
+          * column 정의
+          * @default []
+         */
+        "columns": SdTableColumn[];
+        /**
+          * 빈 상태 메시지
+          * @default '데이터가 없습니다.'
+         */
+        "noDataLabel": string;
+        "pagination"?: {
+  page: number;
+  rowsPerPage: number;
+  lastPage?: number;
+ };
+        /**
+          * 행의 고유 식별자 프로퍼티
+          * @default 'id'
+         */
+        "rowKey": string;
+        /**
+          * row 데이터
+          * @default []
+         */
+        "rows": { [key: string]: any }[];
+        /**
+          * 다중 선택 허용
+          * @default true
+         */
+        "selectable": boolean;
+        /**
+          * 선택된 row 목록
+          * @default new Set()
+         */
+        "selected": Set<{ [key: string]: any }>;
+        /**
+          * 헤더 고정
+          * @default false
+         */
+        "stickyHeader": boolean;
+    }
     interface SdTag {
         "bgColor"?: string;
         /**
@@ -260,6 +308,12 @@ declare global {
         prototype: HTMLSdPaginationElement;
         new (): HTMLSdPaginationElement;
     };
+    interface HTMLSdTableElement extends Components.SdTable, HTMLStencilElement {
+    }
+    var HTMLSdTableElement: {
+        prototype: HTMLSdTableElement;
+        new (): HTMLSdTableElement;
+    };
     interface HTMLSdTagElement extends Components.SdTag, HTMLStencilElement {
     }
     var HTMLSdTagElement: {
@@ -273,6 +327,7 @@ declare global {
         "sd-icon": HTMLSdIconElement;
         "sd-input": HTMLSdInputElement;
         "sd-pagination": HTMLSdPaginationElement;
+        "sd-table": HTMLSdTableElement;
         "sd-tag": HTMLSdTagElement;
     }
 }
@@ -414,6 +469,52 @@ declare namespace LocalJSX {
          */
         "simple"?: boolean;
     }
+    interface SdTable {
+        /**
+          * @default ''
+         */
+        "class"?: string;
+        /**
+          * column 정의
+          * @default []
+         */
+        "columns"?: SdTableColumn[];
+        /**
+          * 빈 상태 메시지
+          * @default '데이터가 없습니다.'
+         */
+        "noDataLabel"?: string;
+        "pagination"?: {
+  page: number;
+  rowsPerPage: number;
+  lastPage?: number;
+ };
+        /**
+          * 행의 고유 식별자 프로퍼티
+          * @default 'id'
+         */
+        "rowKey"?: string;
+        /**
+          * row 데이터
+          * @default []
+         */
+        "rows"?: { [key: string]: any }[];
+        /**
+          * 다중 선택 허용
+          * @default true
+         */
+        "selectable"?: boolean;
+        /**
+          * 선택된 row 목록
+          * @default new Set()
+         */
+        "selected"?: Set<{ [key: string]: any }>;
+        /**
+          * 헤더 고정
+          * @default false
+         */
+        "stickyHeader"?: boolean;
+    }
     interface SdTag {
         "bgColor"?: string;
         /**
@@ -441,6 +542,7 @@ declare namespace LocalJSX {
         "sd-icon": SdIcon;
         "sd-input": SdInput;
         "sd-pagination": SdPagination;
+        "sd-table": SdTable;
         "sd-tag": SdTag;
     }
 }
@@ -454,6 +556,7 @@ declare module "@stencil/core" {
             "sd-icon": LocalJSX.SdIcon & JSXBase.HTMLAttributes<HTMLSdIconElement>;
             "sd-input": LocalJSX.SdInput & JSXBase.HTMLAttributes<HTMLSdInputElement>;
             "sd-pagination": LocalJSX.SdPagination & JSXBase.HTMLAttributes<HTMLSdPaginationElement>;
+            "sd-table": LocalJSX.SdTable & JSXBase.HTMLAttributes<HTMLSdTableElement>;
             "sd-tag": LocalJSX.SdTag & JSXBase.HTMLAttributes<HTMLSdTagElement>;
         }
     }

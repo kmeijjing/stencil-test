@@ -14,6 +14,7 @@ import { SdCheckbox as SdCheckboxElement, defineCustomElement as defineSdCheckbo
 import { SdIcon as SdIconElement, defineCustomElement as defineSdIcon } from "@stencil-test/stencil/dist/components/sd-icon.js";
 import { SdInput as SdInputElement, defineCustomElement as defineSdInput } from "@stencil-test/stencil/dist/components/sd-input.js";
 import { SdPagination as SdPaginationElement, defineCustomElement as defineSdPagination } from "@stencil-test/stencil/dist/components/sd-pagination.js";
+import { SdTable as SdTableElement, defineCustomElement as defineSdTable } from "@stencil-test/stencil/dist/components/sd-table.js";
 import { SdTag as SdTagElement, defineCustomElement as defineSdTag } from "@stencil-test/stencil/dist/components/sd-tag.js";
 import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
 import { createComponent } from '@stencil/react-output-target/runtime';
@@ -91,6 +92,17 @@ export const SdPagination: StencilReactComponent<SdPaginationElement, SdPaginati
     react: React,
     events: { onPageChange: 'pageChange' } as SdPaginationEvents,
     defineCustomElement: defineSdPagination
+});
+
+export type SdTableEvents = NonNullable<unknown>;
+
+export const SdTable: StencilReactComponent<SdTableElement, SdTableEvents> = /*@__PURE__*/ createComponent<SdTableElement, SdTableEvents>({
+    tagName: 'sd-table',
+    elementClass: SdTableElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as SdTableEvents,
+    defineCustomElement: defineSdTable
 });
 
 export type SdTagEvents = NonNullable<unknown>;

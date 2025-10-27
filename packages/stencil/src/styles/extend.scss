@@ -1,0 +1,31 @@
+@import './variables.scss';
+
+%scrollBar {
+ overflow-y: auto;
+ overflow-x: hidden;
+ scroll-behavior: smooth;
+ // scrollbar-gutter: auto;
+
+ &::-webkit-scrollbar {
+  opacity: 0;
+  width: 8px;
+  background: $grey_25;
+ }
+
+ &::-webkit-scrollbar-thumb {
+  height: 80px;
+  background-color: $grey_45;
+  border-radius: 4px;
+  &:hover {
+   background: $grey_25;
+  }
+
+  &:active {
+   background: $grey_25;
+  }
+ }
+
+ &::-webkit-scrollbar-track {
+  background-color: transparent;
+ }
+}

@@ -36,12 +36,7 @@ export class SdIcon {
   const IconComponent = (Icons as any)[this.name]?.[this.size];
 
   return (
-   <i
-    class={this.getIconClasses()}
-    role={this.label ? 'img' : 'presentation'}
-    aria-hidden={this.label ? 'false' : 'true'}
-    aria-label={this.label}
-   >
+   <i class={this.getIconClasses()}>
     <IconComponent color={this.color} />
    </i>
   );

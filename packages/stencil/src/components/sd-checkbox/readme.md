@@ -24,6 +24,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [sd-table](../sd-table)
+
 ### Depends on
 
 - [sd-icon](../sd-icon)
@@ -32,6 +36,7 @@
 ```mermaid
 graph TD;
   sd-checkbox --> sd-icon
+  sd-table --> sd-checkbox
   style sd-checkbox fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
