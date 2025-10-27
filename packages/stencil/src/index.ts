@@ -10,3 +10,6 @@
 
 export { format } from './utils/utils';
 export type * from './components.d.ts';
+
+// Export sd-table types
+export type { SdTableSortDir, SdTableColumn, Row } from './components/sd-table/sd-table';
