@@ -36,8 +36,6 @@ export const config: Config = {
   vueOutputTarget({
    componentCorePackage: '@stencil-test/stencil',
    proxiesFile: '../../packages/vue/lib/components.ts',
-   includeDefineCustomElements: true,
-   customElementsDir: 'dist/components',
   }),
  ],
  testing: {
