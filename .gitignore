@@ -10,7 +10,8 @@ packages/stencil/www/
 packages/stencil/loader/
 packages/stencil/.stencil/
 packages/stencil/dist/
-src/components.d.ts
+**/src/components.d.ts
+**/components.d.ts
 
 # React auto-generated files  
 packages/react/lib/components/components.ts
