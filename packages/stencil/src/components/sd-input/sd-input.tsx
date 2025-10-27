@@ -31,11 +31,11 @@ export class SdInput {
  @State() private error: boolean = false;
  @State() private focused: boolean = false;
 
- @Event() $click?: EventEmitter<string | number | null>;
- @Event() $input?: EventEmitter<string | number | null>;
- @Event() $change?: EventEmitter<string | number | null>;
- @Event() $focus?: EventEmitter<Event>;
- @Event() $blur?: EventEmitter<Event>;
+ @Event() sdClick?: EventEmitter<string | number | null>;
+ @Event() sdInput?: EventEmitter<string | number | null>;
+ @Event() sdChange?: EventEmitter<string | number | null>;
+ @Event() sdFocus?: EventEmitter<Event>;
+ @Event() sdBlur?: EventEmitter<Event>;
 
  @Watch('value')
  valueChanged(newValue: string | number | null) {
@@ -58,20 +58,20 @@ export class SdInput {
  private handleInput = (event: Event) => {
   const target = event.target as HTMLInputElement;
   this.internalValue = target.value;
-  this.$input?.emit(this.internalValue);
+  this.sdInput?.emit(this.internalValue);
  };
 
  private handleChange = (event: Event) => {
   const target = event.target as HTMLInputElement;
   this.internalValue = target.value;
-  this.$change?.emit(this.internalValue);
+  this.sdChange?.emit(this.internalValue);
  };
 
  private handleFocus = (type: 'focus' | 'blur', event: Event) => {
   this.focused = type === 'focus';
 
-  if (type === 'blur') this.$blur?.emit(event);
-  else this.$focus?.emit(event);
+  if (type === 'blur') this.sdBlur?.emit(event);
+  else this.sdFocus?.emit(event);
  };
 
  render() {

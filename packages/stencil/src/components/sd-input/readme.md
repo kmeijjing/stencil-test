@@ -21,13 +21,13 @@
 
 ## Events
 
-| Event     | Description | Type                                    |
-| --------- | ----------- | --------------------------------------- |
-| `$blur`   |             | `CustomEvent<Event>`                    |
-| `$change` |             | `CustomEvent<null \| number \| string>` |
-| `$click`  |             | `CustomEvent<null \| number \| string>` |
-| `$focus`  |             | `CustomEvent<Event>`                    |
-| `$input`  |             | `CustomEvent<null \| number \| string>` |
+| Event      | Description | Type                                    |
+| ---------- | ----------- | --------------------------------------- |
+| `sdBlur`   |             | `CustomEvent<Event>`                    |
+| `sdChange` |             | `CustomEvent<null \| number \| string>` |
+| `sdClick`  |             | `CustomEvent<null \| number \| string>` |
+| `sdFocus`  |             | `CustomEvent<Event>`                    |
+| `sdInput`  |             | `CustomEvent<null \| number \| string>` |
 
 
 ----------------------------------------------

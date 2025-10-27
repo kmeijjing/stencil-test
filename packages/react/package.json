@@ -17,10 +17,9 @@
   "lib"
  ],
  "scripts": {
-  "test": "node ./__tests__/react.test.js",
-  "build": "node fix-components.js && npm run tsc",
-  "watch": "tsc -p . -w",
-  "tsc": "tsc -p ."
+  "build": "tsc",
+  "clean": "rm -rf lib",
+  "dev": "tsc --watch"
  },
  "dependencies": {
   "@stencil-test/stencil": "^0.0.1",

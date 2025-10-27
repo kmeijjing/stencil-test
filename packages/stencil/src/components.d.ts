@@ -14,23 +14,6 @@ export { Event } from "@stencil/core";
 export { SdTableColumn } from "./components/sd-table/sd-table";
 export { TagColor, TagSize } from "./components/sd-tag/sd-tag";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-          * @default ''
-         */
-        "first": string;
-        /**
-          * The last name
-          * @default ''
-         */
-        "last": string;
-        /**
-          * The middle name
-          * @default ''
-         */
-        "middle": string;
-    }
     interface SdButton {
         /**
           * @default '#025497'
@@ -224,12 +207,6 @@ export interface SdPaginationCustomEvent<T> extends CustomEvent<T> {
     target: HTMLSdPaginationElement;
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
-    }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
-    };
     interface HTMLSdButtonElementEventMap {
         "sdClick": MouseEvent;
     }
@@ -271,11 +248,11 @@ declare global {
         new (): HTMLSdIconElement;
     };
     interface HTMLSdInputElementEventMap {
-        "$click": string | number | null;
-        "$input": string | number | null;
-        "$change": string | number | null;
-        "$focus": Event;
-        "$blur": Event;
+        "sdClick": string | number | null;
+        "sdInput": string | number | null;
+        "sdChange": string | number | null;
+        "sdFocus": Event;
+        "sdBlur": Event;
     }
     interface HTMLSdInputElement extends Components.SdInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLSdInputElementEventMap>(type: K, listener: (this: HTMLSdInputElement, ev: SdInputCustomEvent<HTMLSdInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -321,7 +298,6 @@ declare global {
         new (): HTMLSdTagElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
         "sd-button": HTMLSdButtonElement;
         "sd-checkbox": HTMLSdCheckboxElement;
         "sd-icon": HTMLSdIconElement;
@@ -332,23 +308,6 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-          * @default ''
-         */
-        "first"?: string;
-        /**
-          * The last name
-          * @default ''
-         */
-        "last"?: string;
-        /**
-          * The middle name
-          * @default ''
-         */
-        "middle"?: string;
-    }
     interface SdButton {
         /**
           * @default '#025497'
@@ -438,11 +397,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         "label"?: string;
-        "on$blur"?: (event: SdInputCustomEvent<Event>) => void;
-        "on$change"?: (event: SdInputCustomEvent<string | number | null>) => void;
-        "on$click"?: (event: SdInputCustomEvent<string | number | null>) => void;
-        "on$focus"?: (event: SdInputCustomEvent<Event>) => void;
-        "on$input"?: (event: SdInputCustomEvent<string | number | null>) => void;
+        "onSdBlur"?: (event: SdInputCustomEvent<Event>) => void;
+        "onSdChange"?: (event: SdInputCustomEvent<string | number | null>) => void;
+        "onSdClick"?: (event: SdInputCustomEvent<string | number | null>) => void;
+        "onSdFocus"?: (event: SdInputCustomEvent<Event>) => void;
+        "onSdInput"?: (event: SdInputCustomEvent<string | number | null>) => void;
         /**
           * @default '입력해 주세요.'
          */
@@ -536,7 +495,6 @@ declare namespace LocalJSX {
         "textColor"?: string;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
         "sd-button": SdButton;
         "sd-checkbox": SdCheckbox;
         "sd-icon": SdIcon;
@@ -550,7 +508,6 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "sd-button": LocalJSX.SdButton & JSXBase.HTMLAttributes<HTMLSdButtonElement>;
             "sd-checkbox": LocalJSX.SdCheckbox & JSXBase.HTMLAttributes<HTMLSdCheckboxElement>;
             "sd-icon": LocalJSX.SdIcon & JSXBase.HTMLAttributes<HTMLSdIconElement>;
