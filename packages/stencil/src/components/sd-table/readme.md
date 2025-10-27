@@ -10,7 +10,6 @@
 | Property           | Attribute       | Description | Type                                                                                             | Default        |
 | ------------------ | --------------- | ----------- | ------------------------------------------------------------------------------------------------ | -------------- |
 | `bodyCellRenderer` | --              |             | `((column: SdTableColumn, row: Row) => string \| HTMLElement \| null \| undefined) \| undefined` | `undefined`    |
-| `className`        | `class-name`    |             | `string`                                                                                         | `''`           |
 | `columns`          | --              |             | `SdTableColumn[]`                                                                                | `[]`           |
 | `noDataLabel`      | `no-data-label` |             | `string`                                                                                         | `'데이터가 없습니다.'` |
 | `pagination`       | --              |             | `undefined \| { page: number; rowsPerPage: number; lastPage?: number \| undefined; }`            | `undefined`    |
@@ -24,9 +23,10 @@
 
 ## Events
 
-| Event            | Description | Type                 |
-| ---------------- | ----------- | -------------------- |
-| `sdSelectChange` |             | `CustomEvent<Row[]>` |
+| Event            | Description | Type                  |
+| ---------------- | ----------- | --------------------- |
+| `sdPageChange`   |             | `CustomEvent<number>` |
+| `sdSelectChange` |             | `CustomEvent<Row[]>`  |
 
 
 ## Shadow Parts

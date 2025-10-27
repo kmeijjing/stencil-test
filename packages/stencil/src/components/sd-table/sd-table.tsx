@@ -36,22 +36,18 @@ export class SdTable {
   rowsPerPage: number;
   lastPage?: number;
  };
- @Prop() className: string = '';
  @Prop() bodyCellRenderer?: (
   column: SdTableColumn,
   row: Row,
  ) => HTMLElement | string | null | undefined;
 
  @Event() sdSelectChange!: EventEmitter<Row[]>;
+ @Event() sdPageChange!: EventEmitter<number>;
 
  @State() currentPage: number = this.pagination?.page || 1;
  @State() innerRows: { [key: string]: any }[] = this.rows;
  @State() innerSelected: Set<{ [key: string]: any }> = new Set(this.selected);
-
- // @Watch('rows')
- // watchRows(newRows: Row[]) {
- //  this.innerRows = [...newRows];
- // }
+ @State() columnWidths: number[] = [];
 
  @Watch('columns')
  watchColumns(newCols: SdTableColumn[]) {
@@ -90,9 +86,7 @@ export class SdTable {
  private get lastPageNumber(): number {
   const { lastPage, rowsPerPage = this.rows.length } = this.pagination || {};
 
-  if (lastPage) return lastPage;
-
-  return Math.ceil(this.rows.length / rowsPerPage) || 1;
+  return lastPage ?? Math.max(1, Math.ceil(this.rows.length / rowsPerPage));
  }
 
  private get sdTableClasses() {
@@ -160,8 +154,6 @@ export class SdTable {
   this.sdSelectChange.emit(Array.from(this.innerSelected));
  }
 
- @State() columnWidths: number[] = [];
-
  private handleResize(index: number, event: MouseEvent) {
   const startX = event.clientX;
   const startWidth = this.columnWidths[index];
@@ -186,7 +178,14 @@ export class SdTable {
    <thead>
     <tr>
      {this.selectable && (
-      <th class="sd-th sd-th--selected">
+      <th
+       class="sd-th sd-th--selected"
+       style={{
+        width: '52px',
+        minWidth: '52px',
+        maxWidth: '52px',
+       }}
+      >
        <sd-checkbox
         checked={this.isAllChecked}
         disabled={!this.paginatedRows.length}
@@ -284,7 +283,7 @@ export class SdTable {
  render() {
   return (
    <>
-    <div class={`sd-table__container ${this.className}`}>
+    <div class={`sd-table__container`}>
      <div class="sd-table__middle">
       <table part="table" class={this.sdTableClasses}>
        {this.renderHeader()}
@@ -295,13 +294,14 @@ export class SdTable {
 
      <div class="sd-table__bottom"></div>
     </div>
-    {this.pagination && (
+    {this.pagination && this.innerRows.length > 0 && (
      <div class="sd-table__pagination">
       <sd-pagination
        currentPage={this.currentPage}
        lastPage={this.lastPageNumber}
        onPageChange={(e: CustomEvent<number>) => {
         this.currentPage = e.detail;
+        this.sdPageChange.emit(this.currentPage);
        }}
       ></sd-pagination>
      </div>

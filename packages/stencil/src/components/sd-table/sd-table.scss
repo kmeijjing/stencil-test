@@ -15,17 +15,18 @@
 
   .sd-table {
    width: 100%;
-   border-collapse: separate;
+   border-collapse: collapse;
    border-spacing: 0;
    table-layout: fixed;
 
    &--selectable {
     td.sd-td--selected,
     th.sd-th--selected {
-     width: 52px;
-     max-width: 52px;
-     min-width: 52px;
+     width: 52px !important;
+     max-width: 52px !important;
+     min-width: 52px !important;
      padding: 0 10px 0 24px;
+     text-align: left;
     }
    }
 

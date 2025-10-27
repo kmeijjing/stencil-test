@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 
-// import '../../../dist/design-system/design-system.esm.js';
-
 const meta: Meta = {
  title: 'Components/Pagination',
  component: 'sd-pagination',

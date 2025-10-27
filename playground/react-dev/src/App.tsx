@@ -59,11 +59,18 @@ function App() {
        return `<b>${row.name}</b>`;
       }
      }}
+     selectable
      resizable
      pagination={{
       page: 2,
       rowsPerPage: 50,
       lastPage: 10,
+     }}
+     onSdSelectChange={(event) => {
+      console.log('Selected rows:', event.detail);
+     }}
+     onSdPageChange={(event) => {
+      console.log('Page changed to:', event.detail);
      }}
     ></SdTable>
    </div>
