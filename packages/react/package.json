@@ -5,7 +5,7 @@
  "homepage": "",
  "license": "ISC",
  "author": "MeeKyeong Kim <kmeijjing@gmail.com>",
- "main": "dist/react.js",
+ "main": "dist/index.js",
  "module": "dist/index.js",
  "types": "dist/types/index.d.ts",
  "directories": {
