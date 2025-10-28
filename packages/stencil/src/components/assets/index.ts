@@ -6,6 +6,7 @@ import * as ArrowLeftEnd from './arrowLeftEnd/index';
 import * as ArrowRightEnd from './arrowRightEnd/index';
 import * as ArrowUp from './arrowUp/index';
 import * as Close from './close/index';
+import * as PageMove from './pageMove/index';
 import * as Search from './search/index';
 
 export const Icons = {
@@ -17,5 +18,6 @@ export const Icons = {
  ...ArrowUp,
  ...Check,
  ...Close,
+ ...PageMove,
  ...Search,
 };

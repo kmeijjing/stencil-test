@@ -18,6 +18,7 @@ function App() {
    field: 'age',
    align: 'right',
    format: (value: number) => `${value} years`,
+   usePageMoveIcon: true,
   },
   { name: 'location', label: 'Location', field: 'location', align: 'left' },
   {

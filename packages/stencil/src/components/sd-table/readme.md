@@ -42,12 +42,14 @@
 ### Depends on
 
 - [sd-checkbox](../sd-checkbox)
+- [sd-icon](../sd-icon)
 - [sd-pagination](../sd-pagination)
 
 ### Graph
 ```mermaid
 graph TD;
   sd-table --> sd-checkbox
+  sd-table --> sd-icon
   sd-table --> sd-pagination
   sd-checkbox --> sd-icon
   sd-pagination --> sd-icon
