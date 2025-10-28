@@ -26,6 +26,8 @@ export class SdInput {
  @Prop() width?: number;
  @Prop() barcode?: boolean = false;
  @Prop() rules?: Array<(value: string | number | null) => boolean | string>;
+ @Prop() readonly: boolean = false;
+ @Prop() inputClass: string = '';
 
  @State() private internalValue: string | number | null = null;
  @State() private error: boolean = false;
@@ -95,11 +97,12 @@ export class SdInput {
     >
      <slot name="prefix"></slot>
      <input
-      class={'sd-input__native_element'}
+      class={['sd-input__native_element', this.inputClass].join(' ')}
       type="text"
       value={this.internalValue || ''}
       placeholder={this.placeholder}
       disabled={this.disabled}
+      readonly={this.readonly}
       onInput={this.handleInput}
       onChange={this.handleChange}
       onFocus={event => this.handleFocus('focus', event)}
