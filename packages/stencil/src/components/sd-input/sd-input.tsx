@@ -8,6 +8,7 @@ import {
  Event,
  EventEmitter,
  h,
+ Method,
 } from '@stencil/core';
 
 @Component({
@@ -18,18 +19,24 @@ import {
 export class SdInput {
  @Element() el!: HTMLElement;
 
- @Prop() value?: string | number | null = null;
+ @Prop({ mutable: true }) value?: string | number | null = null;
  @Prop() label?: string;
  @Prop() placeholder: string = '입력해 주세요.';
  @Prop() disabled: boolean = false;
  @Prop() clearable: boolean = false;
- @Prop() width?: number;
+ @Prop() width?: number | string;
  @Prop() barcode?: boolean = false;
  @Prop() rules?: Array<(value: string | number | null) => boolean | string>;
+ @Prop() autoFocus: boolean = false;
+
+ //  props - custom styles
+ @Prop() inputStyle: { [key: string]: string } = {};
 
  @State() private internalValue: string | number | null = null;
  @State() private error: boolean = false;
  @State() private focused: boolean = false;
+
+ private nativeEl: HTMLInputElement | undefined = undefined;
 
  @Event() sdClick?: EventEmitter<string | number | null>;
  @Event() sdInput?: EventEmitter<string | number | null>;
@@ -55,6 +62,17 @@ export class SdInput {
   }
  }
 
+ @Method()
+ async getNativeElement(): Promise<HTMLInputElement | null> {
+  return this.nativeEl || null;
+ }
+
+ componentWillLoad() {
+  if (this.value) {
+   this.internalValue = this.value;
+  }
+ }
+
  private handleInput = (event: Event) => {
   const target = event.target as HTMLInputElement;
   this.internalValue = target.value;
@@ -77,7 +95,7 @@ export class SdInput {
  render() {
   const inputWidth = this.width
    ? {
-      '--input-width': `${this.width}px`,
+      '--input-width': typeof this.width === 'number' ? `${this.width}px` : this.width,
      }
    : {};
 
@@ -92,20 +110,35 @@ export class SdInput {
       'sd-input--barcode': !!this.barcode,
       'sd-input--error': this.error,
      }}
+     style={this.inputStyle}
     >
      <slot name="prefix"></slot>
      <input
+      ref={el => (this.nativeEl = el)}
       class={'sd-input__native_element'}
       type="text"
       value={this.internalValue || ''}
       placeholder={this.placeholder}
       disabled={this.disabled}
+      autofocus={this.autoFocus}
       onInput={this.handleInput}
       onChange={this.handleChange}
       onFocus={event => this.handleFocus('focus', event)}
       onBlur={event => this.handleFocus('blur', event)}
      />
      <slot name="suffix"></slot>
+     {this.clearable && this.internalValue && (
+      <sd-icon
+       name="close"
+       color="#888"
+       style={{ marginRight: '-4px', marginLeft: '8px', cursor: 'pointer' }}
+       onClick={() => {
+        this.internalValue = '';
+        this.sdChange?.emit(this.internalValue);
+        this.sdInput?.emit(this.internalValue);
+       }}
+      />
+     )}
     </label>
    </Host>
   );
@@ -135,12 +168,12 @@ export class SdInput {
     });
 
     // 커스텀 이벤트 - 수동으로 emit된 것만 작동
-    sdInput.addEventListener('$focus', event => {
-     console.log('Custom $focus event:', event.detail); // Event 객체
+    sdInput.addEventListener('sdFocus', event => {
+     console.log('Custom sdFocus event:', event.detail); // Event 객체
     });
 
-    sdInput.addEventListener('$input', event => {
-     console.log('Custom $input event:', event.detail); // 값 자체
+    sdInput.addEventListener('sdInput', event => {
+     console.log('Custom sdInput event:', event.detail); // 값 자체
     });
    });
   </script>
